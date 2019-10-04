@@ -15,7 +15,7 @@
     <style>
     	table{
     		border-collapse: collapse;
-    		wifth:100%;
+    		width:100%;
     	}
     	th, td{
     		text-align:left;
@@ -28,6 +28,19 @@
     		background-color:#3498db;
     		color:white;
     	}
+    	.button {
+			  background-color: green;
+			  border: none;
+			  color: white;
+			  padding: 10px 15px;
+			  margin-top: 10	px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 15px;
+			  margin: 15px 8px;
+			  cursor: pointer;
+		}
     </style>
 </head>
 
@@ -62,9 +75,9 @@
 			</table>
 			
 			<div>
-				<input type="submit" value="delete" class="button" onclick="parent.location='doDelete.html'">
+				<input type="submit" value="Delete" class="button" onclick="parent.location='doDelete.html'">
 				
-				<input type="submit" value="update" class="button" onclick="parent.location='doUpdate.html'">
+				<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 			</div>
 		<%
 			rs.close();

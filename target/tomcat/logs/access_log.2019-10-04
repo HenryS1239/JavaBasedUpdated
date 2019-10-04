@@ -1,3 +1,3 @@
-0:0:0:0:0:0:0:1 - - [04/Oct/2019:15:17:54 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 3150 http-bio-8080-exec-1 1952
-0:0:0:0:0:0:0:1 - - [04/Oct/2019:15:17:57 +0800] "GET /Facebook/doRegister.html HTTP/1.1" 200 3075 http-bio-8080-exec-3 159
-0:0:0:0:0:0:0:1 - - [04/Oct/2019:15:18:09 +0800] "POST /Facebook/register.html HTTP/1.1" 200 966 http-bio-8080-exec-4 1559
+0:0:0:0:0:0:0:1 - - [04/Oct/2019:17:50:45 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2652 http-bio-8080-exec-2 1409
+0:0:0:0:0:0:0:1 - - [04/Oct/2019:17:50:45 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2652 http-bio-8080-exec-1 1417
+0:0:0:0:0:0:0:1 - - [04/Oct/2019:17:50:47 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2652 http-bio-8080-exec-5 10

@@ -58,46 +58,25 @@
     		font-size:1em;
     		color:#5e5c5c;
     	}
-    	.btn{
-    		border-radius:4px;
-    		background:#2ecc71;
-    		border:#27ae60 1px solid;
-    		padding-bottom:5px;
-    		padding-top:5px;
-    		width:125px;
-    		margin-top:20px;
-    		margin-bottom:20px;
-    		float:left;
-    		margin-left:16px;
-    		font-weight:800;
-    		font-size:0.8em;
-    		color:white;
-    	}
-    	.btn:hover{
-    		background:#2CC068
-    	}
-    	.btn2{
-    		float:left;
-    		background:#36a1e9;
-    		width:125px;
-    		padding-top:5px;
-    		padding-bottom:5px;
-    		color:white;
-    		border-radius:4px;
-    		boder:#2980b9 1px solid;
-    		margin-top:20px;
-    		margin-bottom:20px;
-    		margin-left:10px;
-    		font-weight:800;
-    		font-size:0.8em;
-    	}
-    	.btn2:hover{
-    		background:rgba(53, 147,210, 0,842);	
-    	}
+  
     	input[type=text], input[type=password]{
     		font-size:0.8em;
     		margin-bottom:5px;
     	}
+    	
+    	.button {
+			  background-color: green;
+			  border: none;
+			  color: white;
+			  padding: 10px 15px;
+			  margin-top: 10	px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 15px;
+			  margin: 15px 8px;
+			  cursor: pointer;
+		}
     	
     </style>
 </head>
@@ -115,9 +94,9 @@
             <label for="userid">Password: </label>
             <input type="password" id="password" name="password" class="password"/><br/>
 
-        <div class ="btn"><input type = "submit" value = "Login"/></div>
+        <div><input type = "submit" value = "Login" class = "button"/>
         
-        <div class="btn"><input type = "button" value = "Register" onclick = "parent.location='doRegister.html'"/></div>
+        <input type = "submit" value = "Register" class = "button" onclick = "parent.location='doRegister.html'"/></div>
             
         </div>
 

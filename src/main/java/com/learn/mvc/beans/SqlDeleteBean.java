@@ -20,11 +20,12 @@ public class SqlDeleteBean {
 
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM user";
+			String sql = "SELECT * FROM userinfo";
 			ResultSet rs = stmt.executeQuery(sql);
 
-			String query = "DELETE FROM user WHERE userid = '" + userId + "'";
+			String query = "DELETE FROM userinfo WHERE userid = ? ";
 			ps = conn.prepareStatement(query);
+			ps.setString(1, userId);
 
 			ps.executeUpdate();
 

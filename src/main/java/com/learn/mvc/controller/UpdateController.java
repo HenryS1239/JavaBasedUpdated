@@ -37,15 +37,9 @@ public class UpdateController {
         SqlUpdateBean updateDBean = (SqlUpdateBean)webContext.getBean("updateDBean");
         
         
-        boolean result = updateDBean.updateDB(userid, groupid, password);
+        updateDBean.updateDB(userid, groupid, password);
 
-        if (result) { //result)
-            return "login_success";
-        } 
-        else {
-            model.addAttribute(STATUS_MESSAGE, "Invalid User ID. Please Try Again.");
-            return "show_register";
-        }
+        return "login_success";
     }
     
 }

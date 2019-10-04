@@ -1,6 +1,10 @@
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\beans\SqlSearchBean.java
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\beans\SqlRegisterBean.java
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\config\CustomDispatcherConfig.java
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\config\CustomDispatcherServlet.java
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\controller\LoginController.java
-C:\Users\user\new-workspace\JavaBased\src\main\java\com\learn\mvc\controller\RegisterController.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\config\CustomDispatcherServlet.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\controller\DeleteController.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\controller\LoginController.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\beans\SqlRegisterBean.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\controller\UpdateController.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\beans\SqlUpdateBean.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\config\CustomDispatcherConfig.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\beans\SqlSearchBean.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\controller\RegisterController.java
+C:\Users\user\new-workspace\JavaBased\JavaBasedUpdated\src\main\java\com\learn\mvc\beans\SqlDeleteBean.java

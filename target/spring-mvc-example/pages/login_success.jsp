@@ -9,14 +9,13 @@
 <%@ page import="java.sql.DriverManager" %>
 
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="login_success_title"/></title>
     <style>
     	table{
     		border-collapse: collapse;
-    		wifth:100%;
+    		width:100%;
     	}
     	th, td{
     		text-align:left;
@@ -29,6 +28,19 @@
     		background-color:#3498db;
     		color:white;
     	}
+    	.button {
+			  background-color: green;
+			  border: none;
+			  color: white;
+			  padding: 10px 15px;
+			  margin-top: 10	px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 15px;
+			  margin: 15px 8px;
+			  cursor: pointer;
+		}
     </style>
 </head>
 
@@ -55,12 +67,18 @@
 		%>
 			<tr><td><%=rs.getInt("userid") %></td>
 				<td><%=rs.getInt("groupid") %></td>
-				<td><%=rs.getString("password") %></td>
+				<td><%=rs.getString("password") %></td></tr>
 				
 		<%
 		}
 		%>
 			</table>
+			
+			<div>
+				<input type="submit" value="delete" class="button" onclick="parent.location='doDelete.html'">
+				
+				<input type="submit" value="update" class="button" onclick="parent.location='doUpdate.html'">
+			</div>
 		<%
 			rs.close();
 			stmt.close();
