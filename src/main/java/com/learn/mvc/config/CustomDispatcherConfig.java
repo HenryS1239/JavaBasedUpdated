@@ -10,6 +10,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.learn.mvc.beans.SqlSearchBean;
 import com.learn.mvc.beans.SqlRegisterBean;
+import com.learn.mvc.beans.SqlUpdateBean;
+import com.learn.mvc.beans.SqlDeleteBean;
 
 
 @EnableWebMvc
@@ -70,6 +72,18 @@ public class CustomDispatcherConfig {
     public SqlRegisterBean getSqlRegisterBean() {
     	SqlRegisterBean register = new SqlRegisterBean();
     	return register;
+    }
+    
+    @Bean(name = "updateDBean")
+    public SqlUpdateBean getSqlUpdateBean() {
+    	SqlUpdateBean update = new SqlUpdateBean();
+    	return update;
+    }
+    
+    @Bean(name = "deleteDBean")
+    public SqlDeleteBean getSqlDeleteBean() {
+    	SqlDeleteBean delete = new SqlDeleteBean();
+    	return delete;
     }
 
 }
