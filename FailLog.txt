@@ -1,0 +1,17 @@
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.058 s
+[INFO] Finished at: 2019-10-03T12:06:32+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:compile (default-compile) on project SpringMVCJavaBased: Compilation failure: Compilation failure:
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[15,30] unreported exception java.lang.ClassNotFoundException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[17,62] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[18,54] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[20,48] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[24,30] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[26,50] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[27,50] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[28,50] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[35,25] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[36,27] unreported exception java.sql.SQLException; must be caught or declared to be thrown
+[ERROR] /C:/Users/user/new-workspace/JavaBased/src/main/java/com/learn/mvc/beans/SqlSearchBean.java:[37,27] unreported exception java.sql.SQLException; must be caught or declared to be thrown
