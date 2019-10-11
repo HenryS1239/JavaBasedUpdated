@@ -54,13 +54,6 @@ public class CustomDispatcherConfig {
         return ret;
     }
 
-    /* Register the UserAccountBean.
-    @Bean(name = "accountBean")
-    public UserAccountBean getUserAccountBean() {
-        UserAccountBean ret = new UserAccountBean();
-        return ret;
-    } */
-
     /*Register the SqlSearchBean. */
     @Bean(name = "searchDBean")
     public SqlSearchBean getSqlSearchBean() {
@@ -68,18 +61,21 @@ public class CustomDispatcherConfig {
         return search;
     }
     
+    /*Register the SqlRegisterBean. */
     @Bean(name = "registerDBean")
     public SqlRegisterBean getSqlRegisterBean() {
     	SqlRegisterBean register = new SqlRegisterBean();
     	return register;
     }
     
+    /*Register the SqlUpdateBean. */
     @Bean(name = "updateDBean")
     public SqlUpdateBean getSqlUpdateBean() {
     	SqlUpdateBean update = new SqlUpdateBean();
     	return update;
     }
     
+    /*Register the SqlDeleteBean. */
     @Bean(name = "deleteDBean")
     public SqlDeleteBean getSqlDeleteBean() {
     	SqlDeleteBean delete = new SqlDeleteBean();
