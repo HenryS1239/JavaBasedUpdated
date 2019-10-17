@@ -79,7 +79,7 @@
 				<label for="userid">User ID:</label>
 				<input type="text" id="userid" name="userid"/><br/>
 			<div>
-				<input type="submit" value="delete" class="button">
+				<input type="submit" value="Delete" class="button">
 			</div>
 			</form>
 		<%

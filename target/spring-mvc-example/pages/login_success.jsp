@@ -66,23 +66,30 @@
 		{
 		%>
 			<tr><td><%=rs.getInt("userid") %></td>
-				<td><%=rs.getInt("groupid") %></td>
+				<td><%=rs.getString("groupid") %></td>
 				<td><%=rs.getString("password") %></td></tr>
 				
 		<%
 		}
 		%>
-			</table>
+		</table>
+		
+		<div>
+			<input type="submit" value="Delete" class="button" onclick="parent.location='doDelete.html'">
 			
-			<div>
-				<input type="submit" value="delete" class="button" onclick="parent.location='doDelete.html'">
-				
-				<input type="submit" value="update" class="button" onclick="parent.location='doUpdate.html'">
-			</div>
+			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
+
+			<input type="submit" id="notBtn" value="Notify Me" class="parent.location='doNotify.html'">
+		</div>
+
+
 		<%
 			rs.close();
 			stmt.close();
 			conn.close();
 		%>
 </body>
+
+<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+
 </html>

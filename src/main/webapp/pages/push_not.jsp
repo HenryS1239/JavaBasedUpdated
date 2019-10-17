@@ -30,30 +30,30 @@
 </head>
 
 <body>
-	<h2>Get Notified </h2>
 
-	<form onsubmit="return confirmDelete()" action="${pageContext.request.contextPath}/register.html" method="post">
-		<div class="box">
-		<h1>Register</h1>
-            <label for="userid">User ID: </label>
-            <input type="text" id="userid" name="userid" class="userid"/><br/>
-            <label for="userid">Group ID: </label>
-            <input type="text" id="groupid" name="groupid" class="userid"/><br/>
-            <div>
-				<input type="radio" id="notetype" value="reccuring"> Notify after time<br>
-				<input type="radio" id="notetype" value="sentinel"> Notify on action<br>
-				<!--<input type="radio" name="notetype" value=""> Other-->
-			</div>
-            <label for="userid">Custom Message: </label>
-            <input type="text" id="custommsg" name="customMsg" class="userid"/><br/>
+    <h1>Get Notified </h1>
 
-        <div><input type = "submit" class = "button" value = "Notify Me"/></div>
-            
+    <form action="${pageContext.request.contextPath}/notify.html" method="post" class="notify">
+    
+        <div class="box">
+            <label for="userid">User ID: </label><br/>
+            <input type="text" id="userid" name="userid" class="userid" /><br/> 
+            <label for="userid">Group ID: </label><br/>
+            <input type="text" id="groupid" name="groupid" class="userid" /><br/>
+        
+            <label for="sentinel">Account Number: </label><br/>
+            <input type="text" id="clientAcc" placeholder="{Account Number}"><br/>
+            <label for="sentinel">Value: </label><br/>
+            <input type="text" id="value" placeholder="Value:RMXX.XX; Time:XXXX"><br/>
+
+            <label for="userid">Custom Message:</label><br/>
+            <textarea rows="4" cols="50" id="customMsg"></textarea><br/>
+
+            <div><input type="submit" class="button" value="Notify Me" /></div>
+
         </div>
 
-        </form>
-
-	
+    </form>
 
 </body>
 <script src = "scripts/main.js"></script>

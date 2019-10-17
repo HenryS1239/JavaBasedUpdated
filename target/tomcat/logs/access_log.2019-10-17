@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:21:31 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2670 http-bio-8080-exec-2 1348
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:21:45 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2670 http-bio-8080-exec-3 7
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:21:53 +0800] "POST /Facebook/doLogin.html HTTP/1.1" 200 1673 http-bio-8080-exec-6 1310
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:21:53 +0800] "GET /Facebook/resources/js/main.js HTTP/1.1" 304 - http-bio-8080-exec-7 8
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:21:53 +0800] "GET /Facebook/resources/js/sw.js HTTP/1.1" 304 - http-bio-8080-exec-8 4
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:22:33 +0800] "POST /Facebook/doLogin.html HTTP/1.1" 200 1673 http-bio-8080-exec-9 61
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:22:33 +0800] "GET /Facebook/resources/js/main.js HTTP/1.1" 304 - http-bio-8080-exec-9 3
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:22:33 +0800] "POST /Facebook/doLogin.html HTTP/1.1" 200 1673 http-bio-8080-exec-9 50
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:22:36 +0800] "GET /Facebook/resources/js/images/icon.png HTTP/1.1" 404 1025 http-bio-8080-exec-9 3
+0:0:0:0:0:0:0:1 - - [17/Oct/2019:14:22:36 +0800] "GET /Facebook/resources/js/images/badge.png HTTP/1.1" 404 1027 http-bio-8080-exec-10 2

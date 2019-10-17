@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.learn.mvc.beans.SqlSearchBean;
@@ -14,11 +16,11 @@ import com.learn.mvc.beans.SqlUpdateBean;
 import com.learn.mvc.beans.SqlDeleteBean;
 
 
-@EnableWebMvc
 @Configuration
+@EnableWebMvc 
 @ComponentScan(basePackages="com.learn.mvc")
 
-public class CustomDispatcherConfig {
+public class CustomDispatcherConfig implements WebMvcConfigurer{
 
     public static final String ENCODING_UTF = "UTF";
     public static final String ENCODING_UTF_8 = "UTF-8";
@@ -30,15 +32,18 @@ public class CustomDispatcherConfig {
      *  */
     @Bean
     public InternalResourceViewResolver getJspViewResolver() {
-
         InternalResourceViewResolver ret = new InternalResourceViewResolver();
         ret.setPrefix("/pages/");
         ret.setSuffix(".jsp");
         ret.setOrder(1);
         return ret;
-
     }
-
+    
+   
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/**").addResourceLocations("/resources/js/sw.js");
+    }
 
     /* messageSource method name can not be change to others, else there will has errors when browse web page.
      * messageSource is used to make page text internalization. The message file is saved in src/main/resources/config/messages_en_US.preoperties
@@ -59,7 +64,7 @@ public class CustomDispatcherConfig {
     public SqlSearchBean getSqlSearchBean() {
         SqlSearchBean search = new SqlSearchBean();
         return search;
-    }
+    } 	
     
     /*Register the SqlRegisterBean. */
     @Bean(name = "registerDBean")
@@ -82,4 +87,7 @@ public class CustomDispatcherConfig {
     	return delete;
     }
 
+    
+
+    
 }

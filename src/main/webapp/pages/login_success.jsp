@@ -79,7 +79,7 @@
 			
 			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 
-			<input type="submit" value="Notify Me" class="button" onclick="parent.location='doNotify.html'">
+			<input type="submit" id="notBtn" value="Notify Me" class="parent.location='doNotify.html'">
 		</div>
 
 
@@ -89,5 +89,7 @@
 			conn.close();
 		%>
 </body>
+
+<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 
 </html>

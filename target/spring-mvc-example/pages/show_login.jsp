@@ -88,16 +88,17 @@
 		<div class="box">
 		<h1>Login</h1>
             <label for="userid">User ID: </label>
-            <input type="text" id="userid" name="userid" class="userid"/><br/>
+            <input type="text" id="userid" name="userid" class="userid" autofocus/><br/>
             <label for="userid">Group ID: </label>
             <input type="text" id="groupid" name="groupid" class="userid"/><br/>
             <label for="userid">Password: </label>
             <input type="password" id="password" name="password" class="password"/><br/>
 
-        <div><input type = "submit" value = "Login" class = "button"/>
+        <div>
+        	<input type = "submit" value = "Login" class = "button"/>
+       		<input type = "submit" value = "Register" class = "button" onclick = "parent.location='doRegister.html'"/>
+        </div>
         
-        <input type = "submit" value = "Register" class = "button" onclick = "parent.location='doRegister.html'"/></div>
-            
         </div>
 
         </form>
