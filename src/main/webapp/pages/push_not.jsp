@@ -41,8 +41,8 @@
             <label for="userid">Group ID: </label><br/>
             <input type="text" id="groupid" name="groupid" class="userid" /><br/>
         
-            <label for="sentinel">Account Number: </label><br/>
-            <input type="text" id="clientAcc" placeholder="{Account Number}"><br/>
+            <label for="sentinel">Transaction type: </label><br/>
+            <input type="text" id="clientT" placeholder="{Account Number}"><br/>
             <label for="sentinel">Value: </label><br/>
             <input type="text" id="value" placeholder="Value:RMXX.XX; Time:XXXX"><br/>
 
@@ -56,5 +56,51 @@
     </form>
 
 </body>
-<script src = "scripts/main.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-messaging.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBITHGVy77Drl-DjkJNvKNuzt-jX2-9pIA",
+    authDomain: "pushnotification-ff078.firebaseapp.com",
+    databaseURL: "https://pushnotification-ff078.firebaseio.com",
+    projectId: "pushnotification-ff078",
+    storageBucket: "pushnotification-ff078.appspot.com",
+    messagingSenderId: "708440050320",
+    appId: "1:708440050320:web:0bc2bbf55655c5079a2615"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+
+<script>
+const dataToSend = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+let dataRecieved=""; 
+fetch("",{credentials:'same-origin',mode:'same-origin',method:"post",body:dataToSend})
+              .then(resp => {
+                if(resp.status==200){
+                   return resp.json()
+                }else{
+                    console.log("Status: "+resp.status);
+                    return Promise.reject("server")
+                }
+              })
+           .then(dataJson =>{
+                 dataToRecieved = JSON.parse(dataJson);
+             })
+              .catch(err =>{
+                if(err=="server")return
+                console.log(err);
+            })
+            
+</script>
+
 </html>

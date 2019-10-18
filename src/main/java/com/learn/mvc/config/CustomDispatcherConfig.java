@@ -14,7 +14,7 @@ import com.learn.mvc.beans.SqlSearchBean;
 import com.learn.mvc.beans.SqlRegisterBean;
 import com.learn.mvc.beans.SqlUpdateBean;
 import com.learn.mvc.beans.SqlDeleteBean;
-
+import com.learn.mvc.beans.SendMsgBean;
 
 @Configuration
 @EnableWebMvc 
@@ -39,11 +39,11 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
         return ret;
     }
     
-   
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+   @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/**").addResourceLocations("/resources/js/sw.js");
-    }
+        }
 
     /* messageSource method name can not be change to others, else there will has errors when browse web page.
      * messageSource is used to make page text internalization. The message file is saved in src/main/resources/config/messages_en_US.preoperties
@@ -86,8 +86,11 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     	SqlDeleteBean delete = new SqlDeleteBean();
     	return delete;
     }
-
     
-
-    
+    @Bean(name = "notifyBean")
+    public SendMsgBean getSendMsgBean() {
+    	SendMsgBean send = new SendMsgBean();
+    	return send;
+    }
+   
 }

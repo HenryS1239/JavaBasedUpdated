@@ -1,113 +1,81 @@
 'use strict';
 
-const applicationServerPublicKey = 'BAW1ODB_GtgE4ZLrGdtUtnuQWggxW4_KTlORtYyXXMQ3Sv1IqH7TFNjRjGvMQX-gHXFOVe6yFZRpuhMO6oyj6lQ';
-// find a way to generate own public key for use
+const messaging = firebase.messaging();
 
-const pushButton = document.querySelector('#notBtn')
-// change id to corresponding id in jsp
+messaging.usePublicVapidKey("BA-iS8WcXpi3cr7IKWZvx901FFyTSwMClCyV7n81OwqQ8Me8BhjNMJ-Ugadz6_Rh9bQ0Hks5i151q0eimjKo5oI");
 
-let isSubscribed = false;
-let swRegistration = null;
+initApp();
 
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  console.log('Service Worker and Push is supported');
-
-
-  navigator.serviceWorker.register('resources/js/sw.js',{ scope: '/Facebook/resources/js/' })
-  .then(function(swReg) {
-    console.log('Service Worker is registered', swReg);
-
-    swRegistration = swReg;
-    initializeUI();
-  
-  })
-  
-  .catch(function(error) {
-    console.error('Service Worker Error', error);
-  });
-  
-  } else {
-    console.warn('Push messaging is not supported');
-    // pushButton.disabled = true;
-    // omit?
+function initApp(){
+	navigator.serviceWorker.register('resources/js/sw.js',{ scope: '/Facebook/resources/js/'})
+	.then((registration) => {
+	  messaging.useServiceWorker(registration);
+	
+	  Notification.requestPermission().then((permission) => {
+			if(permission === 'granted') {
+				console.log('Notification permission granted.');
+			}else {
+				console.log('Notification permission denied.');
+			}
+		});
+	
+		messaging.getToken().then((currentToken) => {
+			  if (currentToken) {
+			    sendTokenToServer(currentToken);
+			     
+			  } else {
+			    // Show permission request.
+			    console.log('No Instance ID token available. Request permission to generate one.');
+			    // Show permission UI.
+			    updateUIForPushPermissionRequired();
+			    setTokenSentToServer(false);
+			  }
+			}).catch((err) => {
+			  console.log('An error occurred while retrieving token. ', err);
+			  showToken('Error retrieving Instance ID token. ', err);
+			  setTokenSentToServer(false);
+			});
+	
+		messaging.onTokenRefresh(() => {
+			  messaging.getToken().then((refreshedToken) => {
+			    console.log('Token refreshed.');
+			    // Indicate that the new Instance ID token has not yet been sent to the
+			    // app server.
+			    setTokenSentToServer(false);
+			    // Send Instance ID token to app server.
+			    sendTokenToServer(refreshedToken);
+			    // ...
+			  }).catch((err) => {
+			    console.log('Unable to retrieve refreshed token ', err);
+			    showToken('Unable to retrieve refreshed token ', err);
+			  });
+			});	
+	});
 }
 
-function initializeUI() {
-
-  // Set the initial subscription value
-  swRegistration.pushManager.getSubscription().then(function (subscription) {
-    isSubscribed = !(subscription == null);
-
-    if (isSubscribed) {
-      console.log('User IS subscribed.');
+function sendTokenToServer(currentToken) {
+    if (!isTokenSentToServer()) {
+      console.log('Sending token to server...');
+      // TODO(developer): Send the current token to your server.
+      setTokenSentToServer(true);
     } else {
-      console.log('User is NOT subscribed.');
+      console.log('Token already sent to server so won\'t send it again ' +
+          'unless it changes');
     }
-
-  });
-
-  if (isSubscribed) {
-    unsubscribeUser();
-  } else {
-    subscribeUser();
   }
-}
 
-
-
-function subscribeUser() {
-  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-  swRegistration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: applicationServerKey
-  })
-  .then(function(subscription) {
-    console.log('User is subscribed.');
-
-
-
-    isSubscribed = true;
-
-    // updateBtn();
-  })
-  .catch(function(err) {
-    console.log('Failed to subscribe the user: ', err);
-    // updateBtn();
-  });
-}
-
-
-function unsubscribeUser() {
-  swRegistration.pushManager.getSubscription()  
-  .then(function(subscription) {
-    if (subscription) {
-      return subscription.unsubscribe();
-    }
-  })
-  .catch(function(error) {
-    console.log('Error unsubscribing', error);
-  })
-  .then(function() {
-   
-
-    console.log('User is unsubscribed.');
-    isSubscribed = false;
-
-    // updateBtn();
-  })
-}
-
-function urlB64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
+function isTokenSentToServer() {
+    return window.localStorage.getItem('sentToServer') === '1';
   }
-  return outputArray;
+
+function setTokenSentToServer(sent) {
+    window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+  }
+
+
+function showToken(currentToken) {
+  // Show token in console and UI.
+  const tokenElement = document.querySelector('#token');
+  tokenElement.textContent = currentToken;
 }
+

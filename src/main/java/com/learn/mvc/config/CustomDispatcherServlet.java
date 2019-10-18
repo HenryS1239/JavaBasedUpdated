@@ -27,6 +27,7 @@ public class CustomDispatcherServlet implements WebApplicationInitializer {
 
         // Add servlet mapping url. All url end with .html will be processed by this servlet.
         dispatcher.addMapping("*.html");
+        
     }
 
 }
