@@ -41,6 +41,12 @@
 			  margin: 15px 8px;
 			  cursor: pointer;
 		}
+		.button:disabled,
+		.button[disabled]{
+  			border: 1px solid #999999;
+  			background-color: #cccccc;
+  			color: #666666;
+		}
     </style>
 </head>
 
@@ -79,7 +85,7 @@
 			
 			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 
-			<input type="submit" value="Notify Me" class="button" onclick="parent.location='doNotify.html'">
+			<input type="submit" id="notify" value="Notify Me" class="button" disabled onclick="parent.location='doNotify.html'">
 		</div>
 
 
@@ -90,28 +96,9 @@
 		%>
 </body>
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-messaging.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBITHGVy77Drl-DjkJNvKNuzt-jX2-9pIA",
-    authDomain: "pushnotification-ff078.firebaseapp.com",
-    databaseURL: "https://pushnotification-ff078.firebaseio.com",
-    projectId: "pushnotification-ff078",
-    storageBucket: "pushnotification-ff078.appspot.com",
-    messagingSenderId: "708440050320",
-    appId: "1:708440050320:web:0bc2bbf55655c5079a2615"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-
+<script src="<%=request.getContextPath()%>/resources/js/localfb.js"></script>
 
 <script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 

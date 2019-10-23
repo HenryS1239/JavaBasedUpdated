@@ -124,7 +124,7 @@
 		{
 		%>
 			<tr><td><%=rs.getInt("userid") %></td>
-				<td><%=rs.getInt("groupid") %></td>
+				<td><%=rs.getString("groupid") %></td>
 				<td><%=rs.getString("password") %></td>
 				
 		<%

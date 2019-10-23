@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.learn.mvc.beans.SqlSearchBean;
-import com.learn.mvc.beans.LogDebug;
-
 @Controller
 public class LoginController {
 

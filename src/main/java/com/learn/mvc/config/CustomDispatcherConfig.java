@@ -1,9 +1,11 @@
 package com.learn.mvc.config;
 
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,6 +17,10 @@ import com.learn.mvc.beans.SqlRegisterBean;
 import com.learn.mvc.beans.SqlUpdateBean;
 import com.learn.mvc.beans.SqlDeleteBean;
 import com.learn.mvc.beans.SendMsgBean;
+import com.learn.mvc.beans.ValidateBean;
+import com.learn.mvc.beans.CompareDataBean;
+import com.learn.mvc.beans.UserDataBean;
+
 
 @Configuration
 @EnableWebMvc 
@@ -43,6 +49,7 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/**").addResourceLocations("/resources/js/sw.js");
+        registry.addResourceHandler("/resources/**").addResourceLocations("META-INF/");
         }
 
     /* messageSource method name can not be change to others, else there will has errors when browse web page.
@@ -87,10 +94,32 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     	return delete;
     }
     
+    /*Register the SendMsgBean. */
     @Bean(name = "notifyBean")
     public SendMsgBean getSendMsgBean() {
     	SendMsgBean send = new SendMsgBean();
     	return send;
     }
-   
+    
+    
+    /*Register the SendMsgBean. */
+    @Bean(name = "validBean")
+    public ValidateBean getValidateBean() {
+    	ValidateBean vld = new ValidateBean();
+    	return vld;
+    }
+    
+    @Bean(name="compareBean")
+    @Scope("singleton")
+    public CompareDataBean getCompareDataBean() {
+    	CompareDataBean comp = new CompareDataBean();
+    	return comp;
+    }
+    
+    @Bean(name="userDBean")
+    public UserDataBean getUserDataBean() {
+    	UserDataBean uDB = new UserDataBean();
+    	return uDB;
+    }
+    
 }
