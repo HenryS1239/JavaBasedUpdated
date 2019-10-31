@@ -1,12 +1,10 @@
 package com.learn.mvc.controller;
 
-import java.io.IOException;
-import java.util.Map;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Array;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.google.firebase.messaging.FirebaseMessagingException;
-
-import com.learn.mvc.beans.SendMsgBean;
-import com.learn.mvc.beans.UserDataBean;
-import com.learn.mvc.beans.ValidateBean;
-import com.learn.mvc.beans.CompareDataBean;
+import com.google.gson.JsonObject;
+import com.learn.mvc.messaging.ClientInputBean;
+import com.learn.mvc.messaging.NewStaffNotBean;
+import com.learn.mvc.messaging.NotifyBean;
 
 @Controller
 public class PNControllerTemp {
@@ -36,69 +32,63 @@ public class PNControllerTemp {
 	public static final String STATUS_MESSAGE = "STATUS_MESSAGE";
 
 	// This method map to http://localhost:8080/SpringMVCXmlBased/showLogin.html
-	@RequestMapping("/doNotify.html")
-	public String showLoginPage() {
-		return "push_not";
+	@RequestMapping(value = "/doNotify.html", method = RequestMethod.GET)
+	public ModelAndView showLoginPage(Model model) {
+		return new ModelAndView("push_not", "command", new NotifyBean());
 	}
 
-	@RequestMapping(value = "/token.html", method = RequestMethod.POST, consumes = { "application/json" })
-	public String registerToken(@RequestBody String token) throws ServletException, IOException {
-		SendMsgBean sendBean = (SendMsgBean) webContext.getBean("notifyBean");
-
-		if (sendBean.tokenRec(sent))
-			return "push_not";
-		else {
-			sendBean.init(token);
-			sendBean.tokenRec(sent);
-			return "push_not";
-		}
+	@RequestMapping(value = "/reqtoken.html", method=RequestMethod.POST, consumes= {"application/json"})
+	ResponseEntity<String> registerToken(HttpServletResponse resp){
+		
+		NewStaffNotBean staffNotBean = (NewStaffNotBean) webContext.getBean("staffBean");
+	    
+		String token = staffNotBean.genToken();
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("token", token);
+		resp.setHeader("Content-Type", token);
+		return ResponseEntity.ok(token);
 	}
 
-	@RequestMapping(value = "/sent.html")
-	ResponseEntity<String> checkSent() {
-		SendMsgBean sendBean = (SendMsgBean) webContext.getBean("notifyBean");
-		sent = sendBean.tokenRec(sent);
-		return ResponseEntity.ok(String.valueOf(sent));
-	}
-	
 	@RequestMapping("/result.html")
 	public String showResult() {
-		return "show_userdata";
+		//return "show_userdata";
+		return "show_update";
 	}
-
-	@RequestMapping(value = "/notify.html", method = RequestMethod.POST, 
-			consumes = { "application/json" }, produces= "text/html;charset=UTF-8")
-	ResponseEntity<String> sendMsg(@RequestBody Map<String, String> payload)
-			throws FirebaseMessagingException, ServletException, IOException {
+	
+	@RequestMapping(value="/checknotify.html")
+	ResponseEntity<String> checkNotification(@RequestBody String token) {
+		ClientInputBean clientBean = (ClientInputBean) webContext.getBean("clientBean");
+		Array usersAvailable = clientBean.getUsers();
+		if(usersAvailable != null) {
+			String users = usersAvailable.toString();
+			if(users.contains(token))
+				return new ResponseEntity<String>("Notification Found",HttpStatus.OK);
+			else
+				return new ResponseEntity<String>("", HttpStatus.OK);
+		} else
+			return new ResponseEntity<String>("", HttpStatus.OK);
 		
-		String acc_no = payload.get("acc_no");
-		String option = payload.get("option");
-		String amount = payload.get("amount");
+	}
+	
+	@RequestMapping("/notify.html")
+	public String registerNotify(Model model, 
+			@ModelAttribute("userid") String userid,
+			@ModelAttribute("groupid") String groupid,
+			@ModelAttribute("option") String option,
+			@ModelAttribute("amount") String value,
+			@ModelAttribute("token") String token) {
 		
-		ValidateBean checkBean = (ValidateBean) webContext.getBean("validBean");
-		CompareDataBean compBean = (CompareDataBean) webContext.getBean("compareBean");
-		UserDataBean userDBean = (UserDataBean) webContext.getBean("userDBean");
-		SendMsgBean sendBean = (SendMsgBean) webContext.getBean("notifyBean");
+		NotifyBean staff = new NotifyBean();
+		staff.setUserid(userid);
+		staff.setGroupid(groupid);
+		staff.setToken(token);
+		staff.setOption(option);
+		staff.setAmount(value);
 		
-		if(payload.size() == 5) {
-			if (checkBean.validateVal(amount)) {
-				if (checkBean.validateAcc(acc_no)) {
-					compBean.createComp(acc_no, option, amount);
-					return ResponseEntity.ok("localhost:8080/Facebook/update.html");
-				}
-			}	
-			return ResponseEntity.ok("localhost:8080/Facebook/update.html");
-		} else {
-			userDBean.userDB(acc_no, option, amount);
-			boolean result = compBean.compare(acc_no, option, amount);
-			if (result) {
-				sendBean.sendMsg();
-				return ResponseEntity.ok("localhost:8080/Facebook/result.html");
-			} else {
-				return ResponseEntity.ok("localhost:8080/Facebook/result.html");
-			}
-				
-		}
+		NewStaffNotBean staffNotBean = (NewStaffNotBean) webContext.getBean("staffBean");
+		staffNotBean.registerNotify(staff);
+		
+		return "login_success";
 	}
 
 }

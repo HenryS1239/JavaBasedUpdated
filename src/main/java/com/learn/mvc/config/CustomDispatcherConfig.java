@@ -1,6 +1,5 @@
 package com.learn.mvc.config;
 
-
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,13 +11,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.learn.mvc.messaging.ClientInputBean;
+import com.learn.mvc.messaging.NewStaffNotBean;
 import com.learn.mvc.beans.SqlSearchBean;
 import com.learn.mvc.beans.SqlRegisterBean;
 import com.learn.mvc.beans.SqlUpdateBean;
 import com.learn.mvc.beans.SqlDeleteBean;
-import com.learn.mvc.beans.SendMsgBean;
 import com.learn.mvc.beans.ValidateBean;
-import com.learn.mvc.beans.CompareDataBean;
 import com.learn.mvc.beans.UserDataBean;
 
 
@@ -36,6 +35,7 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     /* This configuration will use InternalResourceViewResolver to resolve jsp pages back to client user.
      * All the pages will be located in src/main/webapp/pages.
      *  */
+    
     @Bean
     public InternalResourceViewResolver getJspViewResolver() {
         InternalResourceViewResolver ret = new InternalResourceViewResolver();
@@ -48,9 +48,10 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-        registry.addResourceHandler("/**").addResourceLocations("/resources/js/sw.js");
         registry.addResourceHandler("/resources/**").addResourceLocations("META-INF/");
         }
+   
+   
 
     /* messageSource method name can not be change to others, else there will has errors when browse web page.
      * messageSource is used to make page text internalization. The message file is saved in src/main/resources/config/messages_en_US.preoperties
@@ -94,13 +95,6 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     	return delete;
     }
     
-    /*Register the SendMsgBean. */
-    @Bean(name = "notifyBean")
-    public SendMsgBean getSendMsgBean() {
-    	SendMsgBean send = new SendMsgBean();
-    	return send;
-    }
-    
     
     /*Register the SendMsgBean. */
     @Bean(name = "validBean")
@@ -109,17 +103,22 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     	return vld;
     }
     
-    @Bean(name="compareBean")
-    @Scope("singleton")
-    public CompareDataBean getCompareDataBean() {
-    	CompareDataBean comp = new CompareDataBean();
-    	return comp;
-    }
-    
     @Bean(name="userDBean")
     public UserDataBean getUserDataBean() {
     	UserDataBean uDB = new UserDataBean();
     	return uDB;
     }
     
+    @Bean(name="clientBean")
+    @Scope(value="singleton")
+    public ClientInputBean getClientInputBean() {
+    	ClientInputBean clientB = new ClientInputBean();
+    	return clientB;
+    }
+    
+    @Bean(name="staffBean")
+    public NewStaffNotBean getNewStaffNotBean() {
+    	NewStaffNotBean staffB = new NewStaffNotBean();
+    	return staffB;
+    }
 }

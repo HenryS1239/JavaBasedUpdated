@@ -95,7 +95,7 @@
             <input type="password" id="password" name="password" class="password"/><br/>
 
         <div>
-        	<input type = "submit" value = "Login" class = "button"/>
+        	<input type = "submit" id="login" value = "Login" class = "button"/>
        		<input type = "submit" value = "Register" class = "button" onclick = "parent.location='doRegister.html'"/>
         </div>
         

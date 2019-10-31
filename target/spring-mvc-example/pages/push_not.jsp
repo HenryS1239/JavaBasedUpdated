@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="java.sql.ResultSet"%>
@@ -40,23 +41,19 @@
 
 	<h1>Get Notified</h1>
 
-	<form id="push-form-json" action="${pageContext.request.contextPath}/notify.html" method="post">
-
+	<form id="user-form" action="${pageContext.request.contextPath}/notify.html" method="post">
 		<div class="box">
 			<label>User ID: </label><br />
 			<input type="text" id="userid" name="userid" autofocus/><br />
 			<label>Group ID: </label><br /> 
 			<input type="text" id="groupid" name="groupid" /><br />
-			<label>Account No.: </label><br /> 
-			<input type="text" id="clientT" name="acc_no"/><br /> 
 			<label>Option:</label><br />
 			<input type="text" id="option" name="option"/><br />
 			<label>Value:</label><br /> 
 			<input type="text" id="value" name="amount"/><br />
 			<br />
-
 			<div>
-				<input type="submit" class="button" disabled id="notify" value="Notify Me" />
+				<input type="button" class="button" id="notify" value="Notify Me" />
 				
 				<input type="submit" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
 			</div>
@@ -66,14 +63,21 @@
 	</form>
 
 </body>
-
-
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-messaging.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/localfb.js"></script>
-
 <script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
-<script defer src="<%=request.getContextPath() %>/resources/js/json-form.js"></script>
-
+<script>
+var notifyButton = document.querySelector("#notify");
+var token = localStorage.getItem("token");
+var form = document.getElementById("user-form");
+notifyButton.addEventListener('click', function(event) {
+	var input = document.createElement('input');//prepare a new input DOM element
+	input.setAttribute('name', 'token');//set the param name
+    input.setAttribute('value', token);//set the value
+    input.setAttribute('type', 'text');
+    form.appendChild(input);
+    console.log()
+	console.log("Append Successful");
+    form.submit();
+});
+</script>
 
 </html>

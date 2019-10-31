@@ -96,4 +96,5 @@
 			return false;
 	}
 </script>
+<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 </html>

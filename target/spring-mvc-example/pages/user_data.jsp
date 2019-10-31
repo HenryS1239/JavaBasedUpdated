@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="java.sql.ResultSet" %>
@@ -60,18 +61,18 @@
 </head>
 
 <body>
-		<form id="user-form-json" action="${pageContext.request.contextPath}/doData.html" method="post">
+		<form:form id="user-form-json" modelAttribute="notifyForm" action="${pageContext.request.contextPath}/doData.html" method="post">
 			<label for="userid">Insert your bank account number: </label>
 			<input type="text" id="acc_no" name="acc_no" class="userid"/><br/>
 			<label for="userid">Deposit / Withdraw: </label>
 			<input type="text" id="option" name="option" class="userid"/><br/>
-			<label for="userid">Amount: </label>
+			<label for="userid">Amount: </label>	
 			<input type="text" id="amount" name="amount" class="userid"/><br/>
 		<div>
 			<input type="submit" value="Submit" id="notify" class="button">
 		</div>
-		</form>
+		</form:form>
 			
 </body>
-<script defer src="<%=request.getContextPath() %>/resources/js/json-form.js"></script>
+
 </html>

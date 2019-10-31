@@ -1,96 +1,80 @@
 'use strict';
+var notifyButton = document.querySelector('#notify');
+var token = null;
 
-const messaging = firebase.messaging();
-const pushButton = document.querySelector('#notify');
-
-
-messaging.usePublicVapidKey("BA-iS8WcXpi3cr7IKWZvx901FFyTSwMClCyV7n81OwqQ8Me8BhjNMJ-Ugadz6_Rh9bQ0Hks5i151q0eimjKo5oI");
-
-initApp();
-
-function initApp(){
-	navigator.serviceWorker.register('resources/js/sw.js',{ scope: '/Facebook/resources/js/'})
-	.then((registration) => {
-	  messaging.useServiceWorker(registration);
+window.addEventListener('load', function() {
+	// At first, let's check if we have permission for notification
+	// If not, let's ask for it
+	var temp = localStorage.getItem("token");
+	if(temp != null)
+		token = temp;
 	
-	  Notification.requestPermission().then((permission) => {
+	 Notification.requestPermission().then((permission) => {
 			if(permission === 'granted') {
 				console.log('Notification permission granted.');
-				pushButton.disabled = false;
+				notifyButton.disabled = false;
 			}else {
 				console.log('Notification permission denied.');
 			}
 		});
+
+	if (token == null) {
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/Facebook/reqtoken.html", true);
+		xhr.setRequestHeader('Accept', 'text/html');
+		xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			token = xhr.responseText;
+			console.log(token);
+			localStorage.setItem("token", token);
+		}
+	}
 	
-		messaging.getToken().then((currentToken) => {
-			  if (currentToken) {
-			    sendTokenToServer(currentToken);
-			    console.log("Token sent.")
-			  } else {
-			    // Show permission request.
-			    console.log('No Instance ID token available. Request permission to generate one.');
-			    // Show permission UI.
-			    pushButton.disabled = false;
-			  }
-			}).catch((err) => {
-			  console.log('An error occurred while retrieving token. ', err);
-			  showToken('Error retrieving Instance ID token. ', err);
-			  pushButton.disabled = true;
-			});
-	
-		messaging.onTokenRefresh(() => {
-			  messaging.getToken().then((refreshedToken) => {
-			    console.log('Token refreshed.');
-			    // Indicate that the new Instance ID token has not yet been sent
-				// to the
-			    // app server.
-			    // Send Instance ID token to app server.
-			    sendTokenToServer(refreshedToken);
-			    // ...
-			  }).catch((err) => {
-			    console.log('Unable to retrieve refreshed token ', err);
-			    showToken('Unable to retrieve refreshed token ', err);
-			  });
-			});	
-	});
-}
+	if(requestNotification()){
+		createNotification();
+	}
 
+});
 
-function showToken(currentToken) {
-  // Show token in console and UI.
-  const tokenElement = document.querySelector('#token');
-  tokenElement.textContent = currentToken;
-}
-
-function sendTokenToServer(currentToken) {
-	
-    if (!isTokenSentToServer()) {
-    	pushButton.disabled = true;
-    	
-    	console.log('Sending token to server...');
-    	var xhr = new XMLHttpRequest();
-    	xhr.open("POST", "/Facebook/token.html", true);
-    	xhr.setRequestHeader('Accept', 'application/json');
-    	xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-
-    	xhr.send(JSON.stringify(currentToken));
-    	pushButton.disabled = false;
-    } else {
-      console.log('Token already sent to server so won\'t send it again ' +
-          'unless it changes');
-    }
-    
-  }
-function isTokenSentToServer() {
+function requestNotification(){
+	console.log('Requesting for Notification');
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "/Facebook/sent.html", true);
-	xhr.send();
+	xhr.open("POST", "/Facebook/checknotify.html", true);
+	xhr.send(token);
 	xhr.onreadystatechange=function(){
 		if(this.readystate==4 && this.readystate==200)
-			return xhr.responseText;
-		else
+			if(xhr.responseText != "") {
+				console.log("Response Received.");
+				return true;
+			}
+		else{
+			console.log("Response NOT Received.")
 			return false;
-	}
+	
+		}
+	}	
 }
 
-
+function createNotification() {
+	if (window.Notification && Notification.permission === "granted") {
+		var notification = new Notification('Match found. Click for more details.');
+		notification.addEventListener('click', function() {
+			window.open("localhost:8080/Facebook/doUpdate.html");
+		});
+	} else if (window.Notification && Notification.permission !== "denied") {
+		Notification.requestPermission(function(status) {
+			// If the user said okay
+			if (status === "granted") {
+				var notification = new Notification('Match found. Click for more details.');
+				notification.addEventListener('click', function() {
+					window.open("localhost:8080/Facebook/doUpdate.html");
+				});
+			} else {
+				alert("Notifications disabled. Unable to show notification.");
+			}
+		});
+	} else {
+		alert("Notifications disabled. Unable to show notification.");
+	}
+}

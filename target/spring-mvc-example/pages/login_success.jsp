@@ -85,6 +85,8 @@
 			
 			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 
+			<input type="button" class="button" id="button" value="Dummy"/>
+
 			<input type="submit" id="notify" value="Notify Me" class="button" disabled onclick="parent.location='doNotify.html'">
 		</div>
 
@@ -95,10 +97,6 @@
 			conn.close();
 		%>
 </body>
-
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-messaging.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/localfb.js"></script>
 
 <script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 

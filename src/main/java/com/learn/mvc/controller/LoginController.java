@@ -24,17 +24,23 @@ public class LoginController {
     public String showLoginPage() {
         return "show_login"; 	
     }
+    
+    @RequestMapping("/ws-client.html")
+    public String showMessagePage() {
+        return "message-test"; 	
+    }
 
     // This method map to http://localhost:8080/SpringMVCXmlBased/doLogin.html
     @RequestMapping("/doLogin.html")
-    public String doLogin(Model model, @ModelAttribute("userid")
-            String userid, @ModelAttribute("groupid") String groupid, 
-                          @ModelAttribute("password") String password,
-                          HttpServletRequest req) {
+    public String doLogin(Model model, @ModelAttribute("userid") String userid, 
+    					@ModelAttribute("groupid") String groupid, 
+                        @ModelAttribute("password") String password,
+                        HttpServletRequest req) {
         
         //Get spring bean from the autowired web application context.
         //UserAccountBean accountBean = (UserAccountBean)webContext.getBean("userAccountBean");
         SqlSearchBean searchDBean = (SqlSearchBean)webContext.getBean("searchDBean");
+        
 
         //boolean checkResult = accountBean.checkUserLogin(userid, groupid, password);
         boolean result = searchDBean.searchDB(userid, groupid, password);
