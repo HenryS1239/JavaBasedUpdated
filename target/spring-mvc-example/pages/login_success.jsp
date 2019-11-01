@@ -15,11 +15,12 @@
     <style>
     	table{
     		border-collapse: collapse;
-    		width:100%;
-    	}
+    		width:50%;
+       	}
     	th, td{
-    		text-align:left;
+    		text-align:center;
     		padding:10px;
+    		
     	}
     	tr:nth-child(even){
     		background-color:#f2f2f2;
@@ -57,7 +58,7 @@
 		<tr>
 			<th>User ID</th>
 			<th>Group ID</th>
-			<th>Password</th>
+			
 		</tr>
 	   <% 	
 	   	Class.forName("com.mysql.jdbc.Driver");
@@ -72,8 +73,7 @@
 		{
 		%>
 			<tr><td><%=rs.getString("userid") %></td>
-				<td><%=rs.getString("groupid") %></td>
-				<td><%=rs.getString("password") %></td></tr>
+				<td><%=rs.getString("groupid") %></td></tr>
 				
 		<%
 		}

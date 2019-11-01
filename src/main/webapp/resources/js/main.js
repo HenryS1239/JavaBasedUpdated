@@ -54,7 +54,7 @@ function createNotification() {
 	if (window.Notification && Notification.permission === "granted") {
 		var notification = new Notification('Match found. Click for more details.');
 		notification.addEventListener('click', function() {
-			window.open("doUpdate.html","_blank");
+			window.open("notification.html","_blank");
 		});
 	} else if (window.Notification && Notification.permission !== "denied") {
 		Notification.requestPermission(function(status) {
@@ -62,7 +62,7 @@ function createNotification() {
 			if (status === "granted") {
 				var notification = new Notification('Match found. Click for more details.');
 				notification.addEventListener('click', function() {
-					window.open("doUpdate.html","_blank");
+					window.open("notification.html","_blank");
 				});
 			} else {
 				alert("Notifications disabled. Unable to show notification.");

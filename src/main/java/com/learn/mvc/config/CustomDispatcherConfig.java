@@ -19,6 +19,7 @@ import com.learn.mvc.beans.UserDataBean;
 import com.learn.mvc.beans.ValidateBean;
 import com.learn.mvc.messaging.ClientInputBean;
 import com.learn.mvc.messaging.NewStaffNotBean;
+import com.learn.mvc.beans.SqlTransactionBean;
 
 
 @Configuration
@@ -120,5 +121,11 @@ public class CustomDispatcherConfig implements WebMvcConfigurer{
     public NewStaffNotBean getNewStaffNotBean() {
     	NewStaffNotBean staffB = new NewStaffNotBean();
     	return staffB;
+    }
+    
+    @Bean(name="transBean")
+    public SqlTransactionBean getSqlTransactionBean() {
+    	SqlTransactionBean transB = new SqlTransactionBean();
+    	return transB;
     }
 }

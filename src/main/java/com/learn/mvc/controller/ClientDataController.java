@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.learn.mvc.beans.UserDataBean;
 import com.learn.mvc.beans.ValidateBean;
 import com.learn.mvc.messaging.ClientInputBean;
+import com.learn.mvc.beans.SqlTransactionBean;
 
 @Controller
 public class ClientDataController {
@@ -41,8 +42,11 @@ public class ClientDataController {
 		if (validBean.checkType(option) != null) {
 			UserDataBean userDBean = (UserDataBean) webContext.getBean("userDBean");
 			ClientInputBean clientBean = (ClientInputBean) webContext.getBean("clientBean");
+			SqlTransactionBean transBean = (SqlTransactionBean) webContext.getBean("transBean");
+			
 			usersAvailable = clientBean.searchUsers(option, value);
 			userDBean.userDB(acc_no, option, value);
+			transBean.transDB(option,value);
 			return "user_data";
 		} else
 			return "user_data";

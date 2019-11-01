@@ -8,6 +8,7 @@ com\learn\mvc\config\CustomWebSocketHandler.class
 com\learn\mvc\controller\ClientDataController.class
 com\learn\mvc\beans\SqlSearchBean.class
 com\learn\mvc\messaging\NewStaffNotBean.class
+com\learn\mvc\beans\SqlTransactionBean.class
 com\learn\mvc\messaging\NotifyBean.class
 com\learn\mvc\beans\UserDataBean.class
 com\learn\mvc\controller\UpdateController.class

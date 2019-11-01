@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,10 +25,10 @@
     <style>
     	table{
     		border-collapse: collapse;
-    		width:100%;
+    		width:75%;
     	}
     	th, td{
-    		text-align:left;
+    		text-align:center;
     		padding:10px;
     	}
     	tr:nth-child(even){
@@ -59,37 +59,27 @@
    	<h3>${STATUS_MESSAGE}</h3>
 	   <table border="2">
 		<tr>
-			<th>Account No</th>
+			<th>Transaction ID</th>
 			<th>Deposit</th>
 			<th>Withdraw</th>
-			<th>Balance</th>
 		</tr>
-	   <% 	
-	   	Class.forName("com.mysql.jdbc.Driver");
+	   <%
 		String url="jdbc:mysql://localhost:3306/user?useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String username="root";
 		String password="root";
-		String query = "SELECT acc_no, deposit, withdraw, balance FROM action";
+		String query = "SELECT * from transaction";
 		Connection conn=DriverManager.getConnection(url, username, password);
 		Statement stmt=conn.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
-		PreparedStatement ps = null;
 		
-		while(rs.next())
-		{
+		while(rs.next()) {
 		%>
-			<tr><td><%=rs.getString("acc_no") %></td>
-				<td><%=rs.getInt("deposit") %></td>
-				<td><%=rs.getInt("withdraw") %></td>
-				<td><%=rs.getString("balance") %></td></tr>
+			<tr><td><%=rs.getString("transID") %></td>
+				<td><%=rs.getDouble("deposit") %></td>
+				<td><%=rs.getDouble("withdraw") %></td>
 		<%
 		}
 		
-		query = "DELETE FROM notifyreq WHERE option>=?, value>=?";
-		ps = conn.prepareStatement(query);
-		ps.setString(1, option);
-		ps.setDouble(2, val);
-		ps.executeUpdate();
 		%>
 			</table>
 		<%
@@ -98,4 +88,4 @@
 			conn.close();
 		%>	
 </body>
-</html> --%>
+</html>

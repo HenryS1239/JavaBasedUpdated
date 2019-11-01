@@ -92,4 +92,8 @@ public class PNControllerTemp {
 		return "login_success";
 	}
 
+	@RequestMapping("/notification.html")
+	public String showNotification() {
+		return "show_userdata";
+	}
 }
