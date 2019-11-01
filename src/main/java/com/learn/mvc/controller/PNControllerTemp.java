@@ -22,7 +22,6 @@ import com.learn.mvc.messaging.ClientInputBean;
 import com.learn.mvc.messaging.NewStaffNotBean;
 import com.learn.mvc.messaging.NotifyBean;
 
-
 @Controller
 public class PNControllerTemp {
 
@@ -38,11 +37,11 @@ public class PNControllerTemp {
 		return new ModelAndView("push_not", "command", new NotifyBean());
 	}
 
-	@RequestMapping(value = "/reqtoken.html", method=RequestMethod.POST, consumes= {"application/json"})
-	ResponseEntity<String> registerToken(HttpServletResponse resp){
-		
+	@RequestMapping(value = "/reqtoken.html", method = RequestMethod.POST, consumes = { "application/json" })
+	ResponseEntity<String> registerToken(HttpServletResponse resp) {
+
 		NewStaffNotBean staffNotBean = (NewStaffNotBean) webContext.getBean("staffBean");
-	    
+
 		String token = staffNotBean.genToken();
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("token", token);
@@ -52,47 +51,44 @@ public class PNControllerTemp {
 
 	@RequestMapping("/result.html")
 	public String showResult() {
-		//return "show_userdata";
+		// return "show_userdata";
 		return "show_update";
 	}
-	
-	@RequestMapping(value="/checknotify.html")
+
+	@RequestMapping(value = "/checknotify.html")
 	@ResponseBody
 	ResponseEntity<String> checkNotification(@RequestBody String token) {
 		List<String> uA = ClientDataController.usersAvailable;
 		ClientInputBean clientBean = (ClientInputBean) webContext.getBean("clientBean");
-		System.out.println(uA);
-		if(uA != null) {
-			for(String s:uA) {
-			if(s.equals(token))
-				clientBean.deleteRecord(token);
-				ClientDataController.usersAvailable = null;
-				return new ResponseEntity<String>("Notification Found",HttpStatus.OK);
+		if (uA != null) {
+			for (String s : uA) {
+				if (s.equals(token)) {
+					clientBean.deleteRecord(token);
+					ClientDataController.usersAvailable = null;
+					return new ResponseEntity<String>("Notification Found", HttpStatus.OK);
+				}
 			}
 			return new ResponseEntity<String>("", HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>("", HttpStatus.OK);
-		
+
 	}
-	
+
 	@RequestMapping("/notify.html")
-	public String registerNotify(Model model, 
-			@ModelAttribute("userid") String userid,
-			@ModelAttribute("groupid") String groupid,
-			@ModelAttribute("option") String option,
-			@ModelAttribute("amount") String value,
-			@ModelAttribute("token") String token) {
-		
+	public String registerNotify(Model model, @ModelAttribute("userid") String userid,
+			@ModelAttribute("groupid") String groupid, @ModelAttribute("option") String option,
+			@ModelAttribute("amount") String value, @ModelAttribute("token") String token) {
+
 		NotifyBean staff = new NotifyBean();
 		staff.setUserid(userid);
 		staff.setGroupid(groupid);
 		staff.setToken(token);
 		staff.setOption(option);
 		staff.setAmount(value);
-		
+
 		NewStaffNotBean staffNotBean = (NewStaffNotBean) webContext.getBean("staffBean");
 		staffNotBean.registerNotify(staff);
-		
+
 		return "login_success";
 	}
 

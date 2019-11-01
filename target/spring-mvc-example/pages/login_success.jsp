@@ -71,7 +71,7 @@
 		while(rs.next())
 		{
 		%>
-			<tr><td><%=rs.getInt("userid") %></td>
+			<tr><td><%=rs.getString("userid") %></td>
 				<td><%=rs.getString("groupid") %></td>
 				<td><%=rs.getString("password") %></td></tr>
 				

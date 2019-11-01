@@ -29,63 +29,6 @@
     		background-color:#3498db;
     		color:white;
     	}
-    	
-    	body{
-    		font-family: 'Open Sans', sans-serif;
-    		background: #3498db;
-    		margin: 0 auto 0 auto;
-    		width: 100%;
-    		text-align:center;
-    		margin: 20px 0px 20px 0px;
-    	}
-    	
-    	p{
-    		font-size:14ps;
-    		text-decoration: none;
-    		color: #ffffff;
-    	}
-    	
-    	h1{
-    		font-size: 2.2em;
-    		font-weight: bold;
-    		color: #080808; 
-    	}
-    	.box{
-    		background: white;
-    		width:300px;
-    		border-radius:px;
-    		margin: 0 auto 0 auto;
-    		padding:0px 0px 70px 0px;
-    		border: #2980b9 4px solid;
-    	}
-    	.userid{
-    		background:#ecf0f1;
-    		border:#ccc 1px solid;
-    		border-bottom:#ccc 2px solid;
-    		padding:8px;
-    		width:250px;
-    		columns:#5e5c5c;
-    		margin-top:10px;
-    		font-size:1em;
-    		font-weight:bold;
-    		color:#5e5c5c;
-    		border-radius:4px;
-    	}
-    	.password{
-    		border-radius:4px;
-    		background:#ecf0f1;
-    		border:#ccc 1px solid;
-    		padding:8px;
-    		width:250px;
-    		margin-top:10px;
-    		font-size:1em;
-    		color:#5e5c5c;
-    	}
-    	
-    	input[type=text], input[type=password]{
-    		font-size:0.8em;
-    		margin-bottom:5px;
-    	}
     	.button {
 			  background-color: green;
 			  border: none;
@@ -99,6 +42,22 @@
 			  margin: 15px 8px;
 			  cursor: pointer;
 		}
+    	.userid{
+    		border:#000000 1px solid;
+    		padding:5px;
+    		width:250px;
+    		margin-top:10px;
+    		font-size:14px;
+    		border-radius:4px;
+    	}
+    	.password{
+    		border:#000000 1px solid;
+    		border-radius:4px;
+    		padding:5px;
+    		width:250px;
+    		margin-top:10px;
+    		font-size:14px;
+    	}
     </style>
 </head>
 
@@ -111,8 +70,7 @@
 			<th>Group ID</th>
 			<th>Password</th>
 		</tr>
-	   <% 	
-	   	Class.forName("com.mysql.jdbc.Driver");
+	   <%
 		String url="jdbc:mysql://localhost:3306/user?useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String username="root";
 		String password="root";
@@ -123,7 +81,7 @@
 		while(rs.next())
 		{
 		%>
-			<tr><td><%=rs.getInt("userid") %></td>
+			<tr><td><%=rs.getString("userid") %></td>
 				<td><%=rs.getString("groupid") %></td>
 				<td><%=rs.getString("password") %></td>
 				
@@ -140,9 +98,11 @@
 		
 		<div style="margin:10px">
 	        <h2>${STATUS_MESSAGE}</h2>
-	        <form onsubmit="return confirmDelete()" action="${pageContext.request.contextPath}/update.html" method="post">
-			<div class="box">
-				<h1>Update</h1>
+	        
+        </div>
+			<form onsubmit = "return confirmDelete()" action="${pageContext.request.contextPath}/update.html" method="post">
+				<div class="box">
+				<h2>Update</h2>
 		            <label for="userid">User ID: </label>
 		            <input type="text" id="userid" name="userid" class="userid"/><br/>
 		            <label for="userid">Group ID: </label>
@@ -152,9 +112,8 @@
 		
 		        <div><input type = "submit" class="button" value = "Update"/></div>
 		            
-	        </div>
-	        </form>
-        </div>
+	        	</div>
+			</form>
 </body>
 <script>
 	function confirmDelete(){
@@ -164,5 +123,4 @@
 			return false;
 	}
 </script>
-<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 </html>

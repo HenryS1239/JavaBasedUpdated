@@ -1,7 +1,5 @@
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:04 +0800] "GET /Facebook/doNotify.html HTTP/1.1" 200 2109 http-bio-8080-exec-1 1419
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:04 +0800] "POST /Facebook/checknotify.html HTTP/1.1" 200 - http-bio-8080-exec-3 113
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:18 +0800] "POST /Facebook/notify.html HTTP/1.1" 200 1835 http-bio-8080-exec-4 1231
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:18 +0800] "POST /Facebook/checknotify.html HTTP/1.1" 200 - http-bio-8080-exec-6 5
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:32 +0800] "POST /Facebook/doData.html HTTP/1.1" 200 2233 http-bio-8080-exec-7 381
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:38 +0800] "POST /Facebook/notify.html HTTP/1.1" 200 1835 http-bio-8080-exec-9 259
-0:0:0:0:0:0:0:1 - - [01/Nov/2019:09:54:38 +0800] "POST /Facebook/checknotify.html HTTP/1.1" 200 18 http-bio-8080-exec-10 157
+0:0:0:0:0:0:0:1 - - [01/Nov/2019:11:39:10 +0800] "GET /Facebook/showLogin.html HTTP/1.1" 200 2681 http-bio-8080-exec-1 2454
+0:0:0:0:0:0:0:1 - - [01/Nov/2019:11:39:16 +0800] "POST /Facebook/doLogin.html HTTP/1.1" 200 1835 http-bio-8080-exec-3 1323
+0:0:0:0:0:0:0:1 - - [01/Nov/2019:11:39:16 +0800] "POST /Facebook/reqtoken.html HTTP/1.1" 200 32 http-bio-8080-exec-4 45
+0:0:0:0:0:0:0:1 - - [01/Nov/2019:11:39:18 +0800] "GET /Facebook/doDelete.html HTTP/1.1" 200 1673 http-bio-8080-exec-5 178
+0:0:0:0:0:0:0:1 - - [01/Nov/2019:11:39:18 +0800] "POST /Facebook/checknotify.html HTTP/1.1" 200 - http-bio-8080-exec-7 11
