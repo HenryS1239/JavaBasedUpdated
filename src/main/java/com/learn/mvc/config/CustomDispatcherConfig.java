@@ -11,14 +11,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.learn.mvc.beans.SqlDeleteBean;
+import com.learn.mvc.beans.SqlRegisterBean;
+import com.learn.mvc.beans.SqlSearchBean;
+import com.learn.mvc.beans.SqlUpdateBean;
+import com.learn.mvc.beans.UserDataBean;
+import com.learn.mvc.beans.ValidateBean;
 import com.learn.mvc.messaging.ClientInputBean;
 import com.learn.mvc.messaging.NewStaffNotBean;
-import com.learn.mvc.beans.SqlSearchBean;
-import com.learn.mvc.beans.SqlRegisterBean;
-import com.learn.mvc.beans.SqlUpdateBean;
-import com.learn.mvc.beans.SqlDeleteBean;
-import com.learn.mvc.beans.ValidateBean;
-import com.learn.mvc.beans.UserDataBean;
 
 
 @Configuration

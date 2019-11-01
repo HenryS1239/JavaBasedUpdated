@@ -55,7 +55,7 @@
 			<div>
 				<input type="button" class="button" id="notify" value="Notify Me" />
 				
-				<input type="submit" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
+				<input type="button" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
 			</div>
 
 		</div>
@@ -73,6 +73,7 @@ notifyButton.addEventListener('click', function(event) {
 	input.setAttribute('name', 'token');//set the param name
     input.setAttribute('value', token);//set the value
     input.setAttribute('type', 'text');
+    input.setAttribute('hidden', true);
     form.appendChild(input);
     console.log()
 	console.log("Append Successful");

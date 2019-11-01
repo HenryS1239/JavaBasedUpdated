@@ -6,17 +6,16 @@ import com.learn.mvc.messaging.GenerateToken;
 import com.learn.mvc.messaging.NotifyBean;
 
 public class NewStaffNotBean {
-	
+
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/user?useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	static final String USER = "root";
 	static final String PASS = "root";
-	
+
 	private Connection conn = null;
 	private Statement stmt = null;
 	private PreparedStatement ps = null;
-
 
 	public void registerNotify(NotifyBean Staff) {
 
@@ -71,10 +70,8 @@ public class NewStaffNotBean {
 
 	}
 
-	
 	public String genToken() {
 		return new GenerateToken().getToken();
 	}
-	
-}
 
+}

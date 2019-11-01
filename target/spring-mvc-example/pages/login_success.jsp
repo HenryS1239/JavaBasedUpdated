@@ -85,8 +85,6 @@
 			
 			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 
-			<input type="button" class="button" id="button" value="Dummy"/>
-
 			<input type="submit" id="notify" value="Notify Me" class="button" disabled onclick="parent.location='doNotify.html'">
 		</div>
 

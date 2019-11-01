@@ -13,10 +13,8 @@ com\learn\mvc\beans\UserDataBean.class
 com\learn\mvc\controller\UpdateController.class
 com\learn\mvc\controller\LoginController.class
 com\learn\mvc\config\WebSocketConfig.class
-com\learn\mvc\controller\GreetingController.class
 com\learn\mvc\config\CustomDispatcherConfig.class
 com\learn\mvc\config\CustomDispatcherServlet.class
-com\learn\mvc\beans\GreetingController.class
 com\learn\mvc\beans\SqlDeleteBean.class
 com\learn\mvc\beans\ValidateBean.class
 com\learn\mvc\messaging\ClientInputBean.class

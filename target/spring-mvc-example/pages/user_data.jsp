@@ -61,18 +61,28 @@
 </head>
 
 <body>
-		<form:form id="user-form-json" modelAttribute="notifyForm" action="${pageContext.request.contextPath}/doData.html" method="post">
-			<label for="userid">Insert your bank account number: </label>
-			<input type="text" id="acc_no" name="acc_no" class="userid"/><br/>
-			<label for="userid">Deposit / Withdraw: </label>
-			<input type="text" id="option" name="option" class="userid"/><br/>
-			<label for="userid">Amount: </label>	
-			<input type="text" id="amount" name="amount" class="userid"/><br/>
-		<div>
-			<input type="submit" value="Submit" id="notify" class="button">
-		</div>
-		</form:form>
+	<form:form id="user-form-json" modelAttribute="notifyForm" action="${pageContext.request.contextPath}/doData.html" method="post">
+		<label for="userid">Insert your bank account number: </label>
+		<input type="text" id="acc_no" name="acc_no" class="userid" autofocus/><br/>
+		<label for="userid">Deposit / Withdraw: </label>
+		<input type="text" id="option" name="option" class="userid"/><br/>
+		<label for="userid">Amount: </label>	
+		<input type="text" id="amount" name="amount" class="userid"/><br/>
+	<div>
+		<input type="submit" value="Submit" id="notify" class="button">
+	</div>
+	</form:form>
 			
 </body>
+
+<script>
+	var option = document.getElementById("#option");
+	if(option.val() == "Deposit" || option.val() == "Withdraw")
+		continue;
+	else{
+		alert("Invalid option entered.");
+		location.reload();
+	}
+</script>
 
 </html>

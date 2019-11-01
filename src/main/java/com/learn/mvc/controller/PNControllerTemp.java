@@ -1,6 +1,7 @@
 package com.learn.mvc.controller;
 
-import java.sql.Array;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,14 +22,13 @@ import com.learn.mvc.messaging.ClientInputBean;
 import com.learn.mvc.messaging.NewStaffNotBean;
 import com.learn.mvc.messaging.NotifyBean;
 
+
 @Controller
 public class PNControllerTemp {
 
 	/* Autowired the web application context object. */
 	@Autowired
 	private WebApplicationContext webContext;
-
-	private boolean sent = false;
 
 	public static final String STATUS_MESSAGE = "STATUS_MESSAGE";
 
@@ -56,15 +57,19 @@ public class PNControllerTemp {
 	}
 	
 	@RequestMapping(value="/checknotify.html")
+	@ResponseBody
 	ResponseEntity<String> checkNotification(@RequestBody String token) {
+		List<String> uA = ClientDataController.usersAvailable;
 		ClientInputBean clientBean = (ClientInputBean) webContext.getBean("clientBean");
-		Array usersAvailable = clientBean.getUsers();
-		if(usersAvailable != null) {
-			String users = usersAvailable.toString();
-			if(users.contains(token))
+		System.out.println(uA);
+		if(uA != null) {
+			for(String s:uA) {
+			if(s.equals(token))
+				clientBean.deleteRecord(token);
+				ClientDataController.usersAvailable = null;
 				return new ResponseEntity<String>("Notification Found",HttpStatus.OK);
-			else
-				return new ResponseEntity<String>("", HttpStatus.OK);
+			}
+			return new ResponseEntity<String>("", HttpStatus.OK);
 		} else
 			return new ResponseEntity<String>("", HttpStatus.OK);
 		
