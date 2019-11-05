@@ -129,13 +129,13 @@
     </dependencies>
 
     <build>
-        <finalName>spring-mvc-example</finalName>
+        <finalName>FinexusDemo</finalName>
         <plugins>
 	        <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <!-- Because this project do not use web.xml so need below settings. -->
+            <!-- Because this project does not use web.xml so need below settings. -->
             <plugin>
         		<groupId>org.apache.maven.plugins</groupId>
        			<artifactId>maven-compiler-plugin</artifactId>

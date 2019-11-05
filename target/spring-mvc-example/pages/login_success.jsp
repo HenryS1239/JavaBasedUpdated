@@ -34,7 +34,7 @@
 			  border: none;
 			  color: white;
 			  padding: 10px 15px;
-			  margin-top: 10	px;
+			  margin-top: 10px;
 			  text-align: center;
 			  text-decoration: none;
 			  display: inline-block;
@@ -48,12 +48,25 @@
   			background-color: #cccccc;
   			color: #666666;
 		}
+		.logoutLblPos {
+
+			position: fixed;
+			right: 10px;
+			top: 5px;
+		}
     </style>
 </head>
 
 <body>
     <h2>Group Table: </h2>
    	<h3>${STATUS_MESSAGE}</h3>
+   	
+   		<form onclick="parent.location='index.html'">
+			<label class="logoutLblPos">
+				<input name="submit" type="button" id="logout" class="button" value="Log Out">
+			</label>
+		</form>
+		
 	   <table border="2">
 		<tr>
 			<th>User ID</th>
@@ -85,6 +98,8 @@
 			
 			<input type="submit" value="Update" class="button" onclick="parent.location='doUpdate.html'">
 
+			<input type="submit" value="Dummy" class="button" id="blah">
+			
 			<input type="submit" id="notify" value="Notify Me" class="button" disabled onclick="parent.location='doNotify.html'">
 		</div>
 
@@ -97,5 +112,32 @@
 </body>
 
 <script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+<script>
+	var blah = document.querySelector("#blah");
+	
+	blah.addEventListener('click', function(){
+		if (window.Notification && Notification.permission === "granted") {
+			var notification = new Notification('Match found. Click for more details.');
+			notification.addEventListener('click', function() {
+				window.open("notification.html","_blank");
+			});
+		} else if (window.Notification && Notification.permission !== "denied") {
+			Notification.requestPermission(function(status) {
+				// If the user said okay
+				if (status === "granted") {
+					var notification = new Notification('Match found. Click for more details.');
+					notification.addEventListener('click', function() {
+						window.open("notification.html","_blank");
+					});
+				} else {
+					alert("Notifications disabled. Unable to show notification.");
+				}
+			});
+		} else {
+			alert("Notifications disabled. Unable to show notification.");
+		
+		}
+	});
+</script>
 
 </html>

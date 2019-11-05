@@ -42,10 +42,22 @@
 			  margin: 15px 8px;
 			  cursor: pointer;
 		}
+		.logoutLblPos {
+
+			position: fixed;
+			right: 10px;
+			top: 5px;
+		}
     </style>
 </head>
 
 <body>
+
+	<form onclick="parent.location='index.html'">
+		<label class="logoutLblPos">
+			<input name="submit" type="button" id="logout" class="button" value="Log Out">
+		</label>
+	</form>
     <h2>Group Table: </h2>
    	<h3>${STATUS_MESSAGE}</h3>
 	   <table border="2">
@@ -80,6 +92,7 @@
 				<input type="text" id="userid" name="userid"/><br/>
 			<div>
 				<input type="submit" value="Delete" class="button">
+				<input type="button" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
 			</div>
 			</form>
 		<%

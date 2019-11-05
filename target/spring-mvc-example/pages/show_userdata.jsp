@@ -19,13 +19,11 @@
  	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
   	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
   	<spring:url value="js/main.js" var="mainJs"/>
-  	<!-- <script defer src="/js/main.js"></script> -->
   	
     <title><spring:message code="login_success_title"/></title>
     <style>
     	table{
     		border-collapse: collapse;
-    		width:75%;
     	}
     	th, td{
     		text-align:center;
@@ -51,12 +49,25 @@
 			  margin: 15px 8px;
 			  cursor: pointer;
 		}
+		.logoutLblPos {
+
+			position: fixed;
+			right: 10px;
+			top: 5px;
+		}
+		#deletTrans{
+			visibility:hidden;
+		}
     </style>
 </head>
 
 <body>
+	<form onclick="parent.location='index.html'">
+		<label class="logoutLblPos">
+			<input name="submit" type="button" id="logout" class="button" value="Log Out">
+		</label>
+	</form>
     <h2>Group Table: </h2>
-   	<h3>${STATUS_MESSAGE}</h3>
 	   <table border="2">
 		<tr>
 			<th>Transaction ID</th>
@@ -82,10 +93,37 @@
 		
 		%>
 			</table>
+			<div id="deletButton"> 
+				<input type="button" class="button" id="delet" value="Delete" onclick="return showDelete()"/>
+				<input type="button" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
+			</div>
+			
+			<div id="deletTrans" class="inlineA">
+				<h2>Delete User</h2>
+				<form onsubmit = "return confirmDelete()" action="${pageContext.request.contextPath}/showtran.html" method="post">
+					<label for="userid">Transaction ID:</label>
+					<input type="text" id="transactionId" name="userid"/><br/>
+					<div>
+						<input type="submit" value="Delete" class="button">
+						<input type="button" class="button" id="Back" value="Go Back" onclick="parent.location='update.html'"/>
+					</div>
+				</form>
+			</div>
 		<%
 			rs.close();
 			stmt.close();
 			conn.close();
 		%>	
 </body>
+<script>
+var deleteOption = document.querySelector("#deletTrans");
+var deleteButton = document.querySelector("#deletButton");
+
+function showDelete() {
+
+	deleteOption.style.visibility="visible";
+	deleteButton.style.visibility="hidden";
+	
+}
+</script>
 </html>

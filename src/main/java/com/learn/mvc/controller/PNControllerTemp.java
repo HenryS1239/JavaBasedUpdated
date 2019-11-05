@@ -2,6 +2,7 @@ package com.learn.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +93,14 @@ public class PNControllerTemp {
 		return "login_success";
 	}
 
-	@RequestMapping("/notification.html")
+	@RequestMapping(value= "/notification.html")
 	public String showNotification() {
+		return "show_userdata";
+	}
+	
+	@RequestMapping(value="/showtran.html")
+	public String deleteTransaction(Model model, @ModelAttribute("transactionId") String trxId, 
+			HttpServletRequest req) {
 		return "show_userdata";
 	}
 }

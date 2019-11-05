@@ -34,12 +34,24 @@
 	  	background-color: #cccccc;
 	  	color: #666666;
 	}
+	.logoutLblPos {
+
+			position: fixed;
+			right: 10px;
+			top: 5px;
+		}
 </style>
 </head>
 
 <body>
 
 	<h1>Get Notified</h1>
+	
+	<form onclick="parent.location='index.html'">
+		<label class="logoutLblPos">
+			<input name="submit" type="button" id="logout" class="button" value="Log Out">
+		</label>
+	</form>
 
 	<form id="user-form" action="${pageContext.request.contextPath}/notify.html" method="post">
 		<div class="box">

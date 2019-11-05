@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework.samples.service.service</groupId>
-    <artifactId>Facebook</artifactId>
+    <artifactId>FinexusDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -129,13 +129,13 @@
     </dependencies>
 
     <build>
-        <finalName>spring-mvc-example</finalName>
+        <finalName>FinexusDemo</finalName>
         <plugins>
 	        <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <!-- Because this project do not use web.xml so need below settings. -->
+            <!-- Because this project does not use web.xml so need below settings. -->
             <plugin>
         		<groupId>org.apache.maven.plugins</groupId>
        			<artifactId>maven-compiler-plugin</artifactId>

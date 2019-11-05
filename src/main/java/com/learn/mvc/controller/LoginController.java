@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.learn.mvc.beans.SqlSearchBean;
@@ -20,16 +21,17 @@ public class LoginController {
     public static final String STATUS_MESSAGE = "STATUS_MESSAGE";
 
     // This method map to http://localhost:8080/SpringMVCXmlBased/showLogin.html
-    @RequestMapping("/showLogin.html")
+    @RequestMapping(value="/showLogin.html" , method = RequestMethod.GET)
     public String showLoginPage() {
         return "show_login"; 	
     }
     
-    @RequestMapping("/ws-client.html")
-    public String showMessagePage() {
-        return "message-test"; 	
+    @RequestMapping(value="/index.html")
+    public String logoutPage(Model model, HttpServletRequest req) {
+    	model.addAttribute(STATUS_MESSAGE,"Logout Successful.");
+        return "show_login"; 	
     }
-
+    
     // This method map to http://localhost:8080/SpringMVCXmlBased/doLogin.html
     @RequestMapping("/doLogin.html")
     public String doLogin(Model model, @ModelAttribute("userid") String userid, 

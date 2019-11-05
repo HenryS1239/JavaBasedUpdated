@@ -1,6 +1,12 @@
 'use strict';
 var notifyButton = document.querySelector('#notify');
+var logoutButton = document.querySelector('#logout');
 var token = null;
+
+logoutButton.addEventListener('click', function(event){
+	console.log('Deleting token');
+	sessionStorage.removeItem('token');
+});
 
 window.addEventListener('load', function() {
 	// At first, let's check if we have permission for notification
@@ -51,6 +57,7 @@ function requestNotification(){
 }
 
 function createNotification() {
+	console.log("creating Notification");
 	if (window.Notification && Notification.permission === "granted") {
 		var notification = new Notification('Match found. Click for more details.');
 		notification.addEventListener('click', function() {
