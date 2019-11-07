@@ -56,7 +56,7 @@ public class PNControllerTemp {
 		return "show_update";
 	}
 
-	@RequestMapping(value = "/checknotify.html")
+	@RequestMapping(value = "/checknotify.html", method = RequestMethod.POST)
 	@ResponseBody
 	ResponseEntity<String> checkNotification(@RequestBody String token) {
 		List<String> uA = ClientDataController.usersAvailable;
