@@ -110,34 +110,9 @@
 			conn.close();
 		%>
 </body>
+<script src="<%=request.getContextPath() %>/resources/js/sockjs.min.js"></script>
+<script defer src="<%=request.getContextPath() %>/resources/js/stomp.min.js"></script>
+<script defer src="<%=request.getContextPath() %>/resources/js/message.js"></script>
 
-<script defer src="<%=request.getContextPath() %>/resources/js/main.js"></script>
-<script>
-	var blah = document.querySelector("#blah");
-	
-	blah.addEventListener('click', function(){
-		if (window.Notification && Notification.permission === "granted") {
-			var notification = new Notification('Match found. Click for more details.');
-			notification.addEventListener('click', function() {
-				window.open("notification.html","_blank");
-			});
-		} else if (window.Notification && Notification.permission !== "denied") {
-			Notification.requestPermission(function(status) {
-				// If the user said okay
-				if (status === "granted") {
-					var notification = new Notification('Match found. Click for more details.');
-					notification.addEventListener('click', function() {
-						window.open("notification.html","_blank");
-					});
-				} else {
-					alert("Notifications disabled. Unable to show notification.");
-				}
-			});
-		} else {
-			alert("Notifications disabled. Unable to show notification.");
-		
-		}
-	});
-</script>
 
 </html>

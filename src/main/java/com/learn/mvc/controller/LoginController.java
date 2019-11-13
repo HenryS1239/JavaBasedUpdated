@@ -19,6 +19,11 @@ public class LoginController {
     private WebApplicationContext webContext;
 
     public static final String STATUS_MESSAGE = "STATUS_MESSAGE";
+    
+    @RequestMapping(value="/message-test.html")
+    public String showMessageTest() {
+    	return "message-test";
+    }
 
     // This method map to http://localhost:8080/SpringMVCXmlBased/showLogin.html
     @RequestMapping(value="/showLogin.html" , method = RequestMethod.GET)

@@ -49,7 +49,6 @@ public class CustomDispatcherConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/resources/**").addResourceLocations("META-INF/");
 	}
 
 	/*

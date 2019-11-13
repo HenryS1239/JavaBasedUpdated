@@ -1,33 +1,23 @@
 package com.learn.mvc.config;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-@Configuration
-public class CustomDispatcherServlet implements WebApplicationInitializer {
+public class CustomDispatcherServlet
+      extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+   @Override
+   protected Class<?>[] getRootConfigClasses() {
+      return null;
+   }
 
-        AnnotationConfigWebApplicationContext dispatcherServletContext = new AnnotationConfigWebApplicationContext();
+   @Override
+   protected Class<?>[] getServletConfigClasses() {
+      return new Class[] { CustomDispatcherConfig.class, WebSocketConfig.class };
+   }
 
-        dispatcherServletContext.register(CustomDispatcherConfig.class);
-
-        DispatcherServlet dispatcherServlet = new DispatcherServlet(dispatcherServletContext);
-
-        // Create a servlet dynamically.
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", dispatcherServlet);
-
-        dispatcher.setLoadOnStartup(1);
-
-        // Add servlet mapping url. All url end with .html will be processed by this servlet.
-        dispatcher.addMapping("*.html");
-        
-    }
+   @Override
+   protected String[] getServletMappings() {
+      return new String[] { "*.html", "/" };
+   }
 
 }

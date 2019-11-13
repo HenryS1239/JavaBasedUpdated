@@ -4,7 +4,7 @@ com\learn\mvc\beans\SqlUpdateBean.class
 com\learn\mvc\controller\PNControllerTemp.class
 com\learn\mvc\beans\SqlRegisterBean.class
 com\learn\mvc\messaging\GenerateToken.class
-com\learn\mvc\config\CustomWebSocketHandler.class
+com\learn\mvc\controller\MyWebSocketHandler.class
 com\learn\mvc\controller\ClientDataController.class
 com\learn\mvc\beans\SqlSearchBean.class
 com\learn\mvc\messaging\NewStaffNotBean.class

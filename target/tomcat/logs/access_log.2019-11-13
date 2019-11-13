@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [13/Nov/2019:17:33:04 +0800] "POST /Facebook/doLogin.html HTTP/1.1" 200 2194 http-bio-8080-exec-1 2606
+0:0:0:0:0:0:0:1 - - [13/Nov/2019:17:33:04 +0800] "GET /Facebook/resources/js/message.js HTTP/1.1" 304 - http-bio-8080-exec-3 29
+0:0:0:0:0:0:0:1 - - [13/Nov/2019:17:33:04 +0800] "GET /Facebook/notification HTTP/1.1" 101 - http-bio-8080-exec-5 54
+0:0:0:0:0:0:0:1 - - [13/Nov/2019:17:33:17 +0800] "GET /Facebook/showData.html HTTP/1.1" 200 2145 http-bio-8080-exec-4 295
+0:0:0:0:0:0:0:1 - - [13/Nov/2019:17:33:25 +0800] "POST /Facebook/doData.html HTTP/1.1" 200 2145 http-bio-8080-exec-7 367
